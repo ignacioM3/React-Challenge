@@ -11,6 +11,7 @@ const PokemonProvider = ({children}) => {
     const [visibleFilter, setVisibleFilter] = useState(false)
     const [filteredPokemons, setfilteredPokemons] = useState([]);
     const [loading, setLoading] = useState(true);
+	const [searchResult, setSearchResult] = useState([])
 
 
 
@@ -124,8 +125,13 @@ const PokemonProvider = ({children}) => {
 			const nuevaListaFilter = filteredPokemons.filter(poke => poke.id !== id)
 			setfilteredPokemons([...nuevaListaFilter]);
 		}
+	}
 
+	const searchPokemon = name =>{
+		const search = globalPokemons.filter(pokemon =>
+			pokemon.name.includes(name))
 
+		setSearchResult([...search])
 	}
 	//minijuego
 	const [activeJ, setActiveJ ] = useState(false)
@@ -156,7 +162,9 @@ const PokemonProvider = ({children}) => {
 					contador,
 					setContador,
 					ganador, 
-					setGanador
+					setGanador,
+					searchPokemon,
+					searchResult
                 
                 }}
         >

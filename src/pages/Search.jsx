@@ -7,13 +7,13 @@ import CardPokemon from '../components/CardPokemon';
 import Loader from '../components/Loader';
 
 const Search = () => {
-    const { globalPokemons, loading } = usePokemon();
+    const { searchPokemon, searchResult, loading } = usePokemon();
     const params = useParams()
     const { name } = params
 
-    const filteredPokemons = globalPokemons.filter(pokemon =>
-        pokemon.name.includes(name)
-    );
+    useEffect(() => {
+        searchPokemon(name)
+    }, []);
 
 
     return (
@@ -21,8 +21,8 @@ const Search = () => {
             <Title>Resultados de la busqueda: {name}</Title>
             <Row>
                 {loading ? <Loader /> : 
-                filteredPokemons.length > 0 ? (
-                    filteredPokemons.map(pokemon => (
+                searchResult.length > 0 ? (
+                    searchResult.map(pokemon => (
                         <CardPokemon pokemon={pokemon} key={pokemon.id} />
                     ))
                 ): (
