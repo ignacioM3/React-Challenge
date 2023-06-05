@@ -132,6 +132,8 @@ const PokemonProvider = ({children}) => {
 			pokemon.name.includes(name))
 
 		setSearchResult([...search])
+		return searchResult
+		
 	}
 	//minijuego
 	const [activeJ, setActiveJ ] = useState(false)

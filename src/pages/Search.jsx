@@ -4,25 +4,23 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Navigation from '../components/Navigation';
 import CardPokemon from '../components/CardPokemon';
-import Loader from '../components/Loader';
 
 const Search = () => {
-    const { searchPokemon, searchResult, loading } = usePokemon();
+    const { globalPokemons } = usePokemon();
     const params = useParams()
     const { name } = params
 
-    useEffect(() => {
-        searchPokemon(name)
-    }, []);
+    const filteredPokemons = globalPokemons.filter(pokemon =>
+        pokemon.name.includes(name)
+    );
 
 
     return (
         <Container>
             <Title>Resultados de la busqueda: {name}</Title>
             <Row>
-                {loading ? <Loader /> : 
-                searchResult.length > 0 ? (
-                    searchResult.map(pokemon => (
+                {filteredPokemons.length > 0 ? (
+                    filteredPokemons.map(pokemon => (
                         <CardPokemon pokemon={pokemon} key={pokemon.id} />
                     ))
                 ): (
