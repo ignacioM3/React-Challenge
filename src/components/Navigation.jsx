@@ -78,6 +78,7 @@ const FormGroup = styled.div`
 		border: none;
 		outline: none;
 		font-size: 15px;
+		background-color: transparent;
 	}
 `
 

@@ -4,9 +4,10 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Navigation from '../components/Navigation';
 import CardPokemon from '../components/CardPokemon';
+import Loader from '../components/Loader';
 
 const Search = () => {
-    const { globalPokemons } = usePokemon();
+    const { globalPokemons, loading } = usePokemon();
     const params = useParams()
     const { name } = params
 
@@ -19,7 +20,8 @@ const Search = () => {
         <Container>
             <Title>Resultados de la busqueda: {name}</Title>
             <Row>
-                {filteredPokemons.length > 0 ? (
+                {loading ? <Loader /> : 
+                filteredPokemons.length > 0 ? (
                     filteredPokemons.map(pokemon => (
                         <CardPokemon pokemon={pokemon} key={pokemon.id} />
                     ))

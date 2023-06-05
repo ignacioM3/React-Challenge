@@ -1,9 +1,5 @@
 const typesFilter =[
     {
-        name: "Planta",
-        attribute: "grass",
-    },
-    {
         name: "Fuego",
         attribute: "fire"
     },
@@ -14,6 +10,10 @@ const typesFilter =[
     {
         name: "Hada",
         attribute: "fairy"
+    },
+    {
+        name: "Planta",
+        attribute: "grass",
     },
     {
         name: "Dragón",
